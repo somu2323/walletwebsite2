@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wallet Dashboard</title>
+    
+    <!-- Link to the CSS file in the static folder -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="wallet-section">
+                <img src="{% static 'images/uniwalletlogo.png' %}" alt="Coin Icon" class="coin-icon">
+                <h2 class="balance-amount">$27,530.18</h2>
+                <p class="balance-caption">Your Wallet Balance</p>
+            </div>
+            
+            <nav class="menu">
+                <ul>
+                    <li><a href="#"><i class="fas fa-home"></i> Overview</a></li>
+                    <li><a href="#"><i class="fas fa-wallet"></i> Transactions</a></li>
+                    <li><a href="#"><i class="fas fa-chart-pie"></i> Statistics</a></li>
+                    <li><a href="{% url 'settings' %}"><i class="fas fa-cog"></i> Settings</a></li>
+                    <li><a href="#"><i class="fas fa-life-ring"></i> Support</a></li>
+                    <li><a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="top-section">
+                <!-- Graph and Stats Cards on the same row -->
+                <div class="card graph-card">
+                    <h4>Transaction History</h4>
+                    <section class="wallet-chart">
+                        <canvas id="transactionHistoryChart"></canvas>
+                    </section>
+                </div>
+
+                <div class="card statistics-card">
+                    <h4>Statistics</h4>
+                    <section class="statistics-card">
+                        <canvas id="statisticsChart"></canvas>
+                    </section>
+                </div>
+            </div>
+
+            <!-- Transaction History Table (Spans the Width of the Page) -->
+            <div class="card transaction-history-card">
+                <h4>Transaction History</h4>
+                <table class="transaction-history-table">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Type</th>
+                            <th>Transaction ID</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>01/01/2024</td>
+                            <td>10:30 AM</td>
+                            <td>Send</td>
+                            <td>TX12345</td>
+                            <td>$100.00</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>02/01/2024</td>
+                            <td>11:00 AM</td>
+                            <td>Receive</td>
+                            <td>TX12346</td>
+                            <td>$200.00</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>03/01/2024</td>
+                            <td>12:15 PM</td>
+                            <td>Send</td>
+                            <td>TX12347</td>
+                            <td>$50.00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Link to the JS file -->
+    <script src="{% static 'js/scripts.js' %}"></script>
+</body>
+</html>

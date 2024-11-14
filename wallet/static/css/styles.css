@@ -1,0 +1,202 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 250px;
+    background-color: #1a73e8;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.wallet-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.wallet-section .coin-icon {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 15px;
+}
+
+.wallet-section .balance-amount {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+.wallet-section .balance-caption {
+    font-size: 14px;
+    color: #ddd;
+}
+
+.menu ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+.menu ul li {
+    margin: 15px 0;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+.menu ul li a i {
+    margin-right: 10px;
+}
+
+.menu ul li a:hover {
+    background-color: #0e52b1;
+}
+
+/* Main Content Styles */
+.main-content {
+    flex-grow: 1;
+    padding: 30px;
+    background-color: #ffffff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.top-section {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+}
+
+/* Graph Card Styles (Larger) */
+.graph-card {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 70%;  /* Graph card takes 70% width */
+    height: 300px;
+}
+
+/* Statistics Card Styles (Smaller) */
+.statistics-card {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 28%;  /* Stats card takes 28% width */
+    height: 300px;
+}
+
+/* Transaction History Card (Spans the full width from sidebar) */
+.transaction-history-card {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: calc(100% - 250px); /* Span from sidebar to end of the page */
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* Transaction History Table Styles */
+.transaction-history-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    height: 300px;
+    overflow-y: auto;
+    display: block;
+}
+
+.transaction-history-table th, .transaction-history-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.transaction-history-table th {
+    background-color: #f4f4f9;
+    color: #333;
+    font-weight: bold;
+}
+
+.transaction-history-table td {
+    color: #555;
+}
+
+.transaction-history-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Card Styles */
+.card {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 1000px;
+    transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Media Queries for Smaller Screens */
+@media (max-width: 1200px) {
+    .graph-card {
+        width: 60%;
+    }
+
+    .statistics-card {
+        width: 35%;
+    }
+
+    .transaction-history-card {
+        width: calc(100% - 250px);
+    }
+}
+
+@media (max-width: 768px) {
+    .top-section {
+        flex-direction: column;
+    }
+
+    .graph-card, .statistics-card {
+        width: 100%;
+    }
+
+    .transaction-history-card {
+        width: 100%;
+    }
+}
