@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receive Money</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="receive-money-container">
+        <aside class="sidebar">
+            <div class="wallet-section">
+                <img src="{% static 'images/uniwalletlogo.png' %}" alt="Coin Icon" class="coin-icon">
+                <h2 class="balance-amount">$27,530.18</h2>
+                <p class="balance-caption">Your Wallet Balance</p>
+            </div>
+            <nav class="menu">
+                <ul>
+                    <li><a href="{% url 'dashboard' %}"><i class="fas fa-home"></i> Overview</a></li>
+                    <li><a href="{% url 'transactions' %}"><i class="fas fa-wallet"></i> Transactions</a></li>
+                    <li><a href="{% url 'send_money' %}"><i class="fas fa-arrow-right"></i> Send Money</a></li>
+                    <li><a href="{% url 'receive_money' %}" class="active"><i class="fas fa-arrow-left"></i> Receive Money</a></li>
+                    <li><a href="{% url 'settings' %}"><i class="fas fa-cog"></i> Settings</a></li>
+                    <li><a href="{% url 'support' %}"><i class="fas fa-life-ring"></i> Support</a></li>
+                    <li><a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <div class="main-content">
+            <h1>Receive Money</h1>
+            <div class="receive-instructions">
+                <p>To receive money, provide the sender with your wallet address below:</p>
+                <div class="wallet-address">
+                    <h3>Your Wallet Address</h3>
+                    <p id="wallet-address">1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa</p>
+                    <button class="btn btn-copy" onclick="copyWalletAddress()">Copy Address</button>
+                </div>
+                <div class="qr-code">
+                    <h3>QR Code</h3>
+                    <!-- You can replace this with a dynamic QR code generation -->
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?data=1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa&size=200x200" alt="QR Code">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function copyWalletAddress() {
+            const address = document.getElementById('wallet-address').innerText;
+            navigator.clipboard.writeText(address).then(() => {
+                alert('Wallet address copied to clipboard!');
+            });
+        }
+    </script>
+    <script src="{% static 'js/scripts.js' %}"></script>
+</body>
+</html>

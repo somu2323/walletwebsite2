@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Settings - Wallet Dashboard</title>
-    <link rel="stylesheet" href="{% static 'css/settings_styles.css' %}">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
@@ -13,18 +15,23 @@
         <!-- Sidebar -->
         <aside class="sidebar">
             <div class="wallet-section">
-                <img src="{% static 'images/uniwalletlogo.png' %}" alt="Wallet Logo" class="wallet-logo">
+                <img src="{% static 'images/uniwalletlogo.png' %}" alt="Coin Icon" class="coin-icon">
                 <h2 class="balance-amount">$27,530.18</h2>
-                <p class="balance-caption">Wallet Balance</p>
+                <p class="balance-caption">Your Wallet Balance</p>
             </div>
             
             <nav class="menu">
                 <ul>
-                    <li><a href="#"><i class="fas fa-home"></i> Overview</a></li>
-                    <li><a href="#"><i class="fas fa-wallet"></i> Transactions</a></li>
+                    <li><a href="{% url 'dashboard' %}" class="{% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}">
+                        <i class="fas fa-home"></i> Overview</a></li>
+                    <li><a href="{% url 'transactions' %}" class="{% if request.resolver_match.url_name == 'transactions' %}active{% endif %}">
+                        <i class="fas fa-wallet"></i> Transactions</a></li>
                     <li><a href="#"><i class="fas fa-chart-pie"></i> Statistics</a></li>
-                    <li><a href="{% url 'settings' %}"><i class="fas fa-cog"></i> Settings</a></li>
-                    <li><a href="#"><i class="fas fa-life-ring"></i> Support</a></li>
+                    <li><a href="{% url 'settings' %}" class="{% if request.resolver_match.url_name == 'settings' %}active{% endif %}">
+                        <i class="fas fa-cog"></i> Settings</a></li>
+                    <li><a href="{% url 'support' %}" class="{% if request.resolver_match.url_name == 'support' %}active{% endif %}">
+                        <i class="fas fa-life-ring"></i> Support</a></li>
+                        
                     <li><a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
                 </ul>
             </nav>
@@ -32,51 +39,63 @@
 
         <!-- Main Content -->
         <div class="main-content">
-            <div class="settings-card">
-                <h2>Settings</h2>
-                <form action="#" method="POST" class="settings-form">
+            <div class="settings-container card">
+                <h2>Account Settings</h2>
+                <form action="{% url 'settings' %}" method="POST">
                     {% csrf_token %}
-                    <div class="setting-option">
-                        <label for="currency">Change Currency</label>
-                        <select id="currency" name="currency" required>
-                            <option value="USD">USD</option>
-                            <option value="EUR">EUR</option>
-                            <option value="GBP">GBP</option>
-                            <option value="INR">INR</option>
-                        </select>
+                    
+                    <!-- General Settings Section -->
+                    <div class="settings-section">
+                        <h3>General Settings</h3>
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" id="username" name="username" value="JohnDoe" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" value="johndoe@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="text" id="phone" name="phone" value="+1 234 567 890" required>
+                        </div>
+                    </div>
+                    
+                    <!-- Password Change Section -->
+                    <div class="settings-section">
+                        <h3>Change Password</h3>
+                        <div class="form-group">
+                            <label for="current_password">Current Password</label>
+                            <input type="password" id="current_password" name="current_password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="new_password">New Password</label>
+                            <input type="password" id="new_password" name="new_password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm_password">Confirm New Password</label>
+                            <input type="password" id="confirm_password" name="confirm_password" required>
+                        </div>
                     </div>
 
-                    <div class="setting-option">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" value="user@example.com" required>
+                    <!-- Preferences Section -->
+                    <div class="settings-section">
+                        <h3>Preferences</h3>
+                        <div class="form-group">
+                            <label for="notification">Enable Notifications</label>
+                            <input type="checkbox" id="notification" name="notification" checked>
+                        </div>
+                        <div class="form-group">
+                            <label for="language">Language</label>
+                            <select id="language" name="language">
+                                <option value="english">English</option>
+                                <option value="spanish">Spanish</option>
+                                <option value="french">French</option>
+                            </select>
+                        </div>
                     </div>
 
-                    <div class="setting-option">
-                        <label for="contact-info">Contact Information</label>
-                        <input type="text" id="contact-info" name="contact-info" value="123-456-7890" required>
-                    </div>
-
-                    <div class="setting-option">
-                        <label for="theme">Theme</label>
-                        <select id="theme" name="theme" required>
-                            <option value="light">Light</option>
-                            <option value="dark">Dark</option>
-                        </select>
-                    </div>
-
-                    <div class="setting-option">
-                        <label for="notifications">Notifications</label>
-                        <select id="notifications" name="notifications" required>
-                            <option value="enabled">Enabled</option>
-                            <option value="disabled">Disabled</option>
-                        </select>
-                    </div>
-
-                    <div class="setting-option">
-                        <label for="about">About</label>
-                        <textarea id="about" name="about" rows="4" placeholder="Any feedback or info..."></textarea>
-                    </div>
-
+                    <!-- Save Button -->
                     <div class="form-actions">
                         <button type="submit" class="save-btn">Save Changes</button>
                     </div>
@@ -84,6 +103,8 @@
             </div>
         </div>
     </div>
+
+    <!-- JS -->
     <script src="{% static 'js/scripts.js' %}"></script>
 </body>
 </html>

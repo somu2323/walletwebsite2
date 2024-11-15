@@ -25,11 +25,11 @@
             
             <nav class="menu">
                 <ul>
-                    <li><a href="#"><i class="fas fa-home"></i> Overview</a></li>
-                    <li><a href="#"><i class="fas fa-wallet"></i> Transactions</a></li>
+                    <li><a href="{% url 'dashboard' %}" class="{% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}"><i class="fas fa-home"></i> Overview</a></li>
+                    <li><a href="{% url 'transactions' %}" class="{% if request.resolver_match.url_name == 'transactions' %}active{% endif %}"><i class="fas fa-wallet"></i> Transactions</a></li>
                     <li><a href="#"><i class="fas fa-chart-pie"></i> Statistics</a></li>
-                    <li><a href="{% url 'settings' %}"><i class="fas fa-cog"></i> Settings</a></li>
-                    <li><a href="#"><i class="fas fa-life-ring"></i> Support</a></li>
+                    <li><a href="{% url 'settings' %}" class="{% if request.resolver_match.url_name == 'settings' %}active{% endif %}"><i class="fas fa-cog"></i> Settings</a></li>
+                    <li><a href="{% url 'support' %}" class="{% if request.resolver_match.url_name == 'support' %}active{% endif %}"><i class="fas fa-life-ring"></i> Support</a></li>
                     <li><a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
                 </ul>
             </nav>
@@ -38,6 +38,23 @@
         <!-- Main Content -->
         <div class="main-content">
             <div class="top-section">
+                <!-- Send and Receive Money Cards (Side by Side) -->
+                <div class="action-cards-container">
+                    <!-- Send Money Card -->
+                    <div class="card action-card send-money-card">
+                        <h4>Send Money</h4>
+                        <p>Quickly send money to anyone with a wallet address.</p>
+                        <a href="{% url 'send_money' %}" class="btn">Send Now</a>
+                    </div>
+
+                    <!-- Receive Money Card -->
+                    <div class="card action-card receive-money-card">
+                        <h4>Receive Money</h4>
+                        <p>Receive funds directly to your wallet address.</p>
+                        <a href="{% url 'receive_money' %}" class="btn">Receive Now</a>
+                    </div>
+                </div>
+
                 <!-- Graph and Stats Cards on the same row -->
                 <div class="card graph-card">
                     <h4>Transaction History</h4>

@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support - Wallet Dashboard</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="wallet-section">
+                <img src="{% static 'images/uniwalletlogo.png' %}" alt="Coin Icon" class="coin-icon">
+                <h2 class="balance-amount">$27,530.18</h2>
+                <p class="balance-caption">Your Wallet Balance</p>
+            </div>
+            
+            <nav class="menu">
+                <ul>
+                    <li><a href="{% url 'dashboard' %}" class="{% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}">
+                        <i class="fas fa-home"></i> Overview</a></li>
+                    <li><a href="{% url 'transactions' %}" class="{% if request.resolver_match.url_name == 'transactions' %}active{% endif %}">
+                        <i class="fas fa-wallet"></i> Transactions</a></li>
+                    <li><a href="#"><i class="fas fa-chart-pie"></i> Statistics</a></li>
+                    <li><a href="{% url 'settings' %}" class="{% if request.resolver_match.url_name == 'settings' %}active{% endif %}">
+                        <i class="fas fa-cog"></i> Settings</a></li>
+                    <li><a href="{% url 'support' %}" class="{% if request.resolver_match.url_name == 'support' %}active{% endif %}">
+                        <i class="fas fa-life-ring"></i> Support</a></li>
+                    <li><a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="support-page-container">
+                <h2>Support</h2>
+                <p>If you are facing any issues or need assistance with your wallet, feel free to reach out to us. We are happy to assist you.</p>
+
+                <h3>Contact Us</h3>
+                <p>Our support team is available 24/7 to assist you with any issues or queries. Please fill out the form below, and we’ll get back to you as soon as possible.</p>
+
+                <div class="contact-form">
+                    <form action="#" method="POST">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your Name" required>
+
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="Your Email" required>
+
+                        <label for="issue">Describe Your Issue</label>
+                        <textarea id="issue" name="issue" rows="4" placeholder="Describe your issue in detail" required></textarea>
+
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script src="{% static 'js/scripts.js' %}"></script>
+</body>
+</html>

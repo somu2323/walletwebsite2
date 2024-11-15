@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send Money</title>
+    
+    <!-- Link to the CSS file in the static folder -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="send-money-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="wallet-section">
+                <img src="{% static 'images/uniwalletlogo.png' %}" alt="Coin Icon" class="coin-icon">
+                <h2 class="balance-amount">$27,530.18</h2>
+                <p class="balance-caption">Your Wallet Balance</p>
+            </div>
+            
+            <nav class="menu">
+                <ul>
+                    <li><a href="{% url 'dashboard' %}" class="{% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}"><i class="fas fa-home"></i> Overview</a></li>
+                    <li><a href="{% url 'transactions' %}" class="{% if request.resolver_match.url_name == 'transactions' %}active{% endif %}"><i class="fas fa-wallet"></i> Transactions</a></li>
+                    <li><a href="{% url 'send_money' %}" class="{% if request.resolver_match.url_name == 'send_money' %}active{% endif %}"><i class="fas fa-arrow-right"></i> Send Money</a></li>
+                    <li><a href="{% url 'receive_money' %}" class="{% if request.resolver_match.url_name == 'receive_money' %}active{% endif %}"><i class="fas fa-arrow-left"></i> Receive Money</a></li>
+                    <li><a href="{% url 'settings' %}" class="{% if request.resolver_match.url_name == 'settings' %}active{% endif %}"><i class="fas fa-cog"></i> Settings</a></li>
+                    <li><a href="{% url 'support' %}" class="{% if request.resolver_match.url_name == 'support' %}active{% endif %}"><i class="fas fa-life-ring"></i> Support</a></li>
+                    <li><a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Sender's Info and Main Content Container -->
+        <div class="main-container">
+            <!-- Sender's Info (Parallel to Sidebar) -->
+            <div class="sender-info">
+                <p><strong>Sender's Address:</strong> 0x1234567890abcdef</p>
+                <p><strong>Balance:</strong> $27,530.18</p>
+            </div>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                <div class="top-section">
+                    <!-- Send Money Form -->
+                    <div class="card send-money-card">
+                        <h4>Send Money</h4>
+                        <form action="{% url 'send_money' %}" method="POST" class="send-money-form">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="recipient_address">Recipient Wallet Address</label>
+                                <input type="text" id="recipient_address" name="recipient_address" required placeholder="Enter recipient's wallet address">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="amount">Amount</label>
+                                <input type="number" id="amount" name="amount" required placeholder="Enter amount to send">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="note">Message (optional)</label>
+                                <textarea id="note" name="note" placeholder="Add a note for the transaction (optional)"></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-send">Send Money</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Link to the JS file -->
+    <script src="{% static 'js/scripts.js' %}"></script>
+</body>
+</html>
